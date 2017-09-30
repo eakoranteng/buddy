@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Customer Buddy</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="css/buddy.css">
+</head>
+
+<body ng-app="buddy" ng-controller="mainCtrl"  class="text-center" ng-cloak>
+<div class="container">
+		<div id="content" class="well">
+			<img src="img/logo.png">
+			<div ng-hide="loginPassed" id="login-screen" class="row">
+				<h3>Enter Location</h3>
+				<div class="col-md-offset-4 col-md-4">
+					<form ng-submit="submitLogin()" name="login" novalidate>
+						<div class="form-group">
+							<input ng-model="ratingData.location" type="text" name="location" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<div class="checkbox">
+								<label>
+									<input ng-model="rememberShop" type="checkbox"> Remember location
+								</label>
+							</div>
+						</div>
+						<div class="form-group">
+							<button ng-disabled="login.$invalid" type="submit" class="btn btn-primary">Start</button>
+						</div>
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div ng-show="loginPassed">
+				<h1 ng-model="currentQuestion" class="text-center">Share your Experience with Us</h1>
+				<p id="shared" class="lead"><span ng-class="{'animated tada': animate==true}" class="bg-success badge">{{ dailyCount }}</span> experiences shared today</p>
+				<div id="experiences" class="btn-group" data-toggle="buttons" style="margin-top:20px;">
+					<label ng-click="ratingData.rating = 1; excellent()" ng-class="{'active focus': excellentLabel}" class="btn btn-info">
+						<input type="radio" name="excellent">
+						<div ng-hide="excellentLabel" class="animated zoomIn">
+							<img src="img/excellent.png">
+							<p class="lead">Excellent</p>
+						</div>
+						<div ng-show="excellentLabel" class="animated zoomIn">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							<p class="lead">Thank You</p>
+						</div>
+					</label>
+					<label ng-click="ratingData.rating = 2; good()" ng-class="{'active focus': goodLabel}" class="btn btn-info">
+						<input type="radio" name="good">
+						<div ng-hide="goodLabel" class="animated zoomIn">
+							<img src="img/good.png">
+							<p class="lead">Good</p>
+						</div>
+						<div ng-show="goodLabel" class="animated zoomIn">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							<p class="lead">Thank You</p>
+						</div>
+					</label>
+					<label ng-click="ratingData.rating = 3; average()" ng-class="{'active focus': averageLabel}" class="btn btn-info">
+						<input type="radio" name="average">
+						<div ng-hide="averageLabel" class="animated zoomIn">
+							<img src="img/average.png">
+							<p class="lead">Average</p>
+						</div>
+						<div ng-show="averageLabel" class="animated zoomIn">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							<p class="lead">Thank You</p>
+						</div>
+					</label>
+					<label ng-click="ratingData.rating = 4; notHappy()" ng-class="{'active focus': notHappyLabel}" class="btn btn-info">
+						<input type="radio" name="notHappy">
+						<div ng-hide="notHappyLabel" class="animated zoomIn">
+							<img src="img/not-happy.png">
+							<p class="lead">Not Happy</p>
+						</div>
+						<div ng-show="notHappyLabel" class="animated zoomIn">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							<p class="lead">Thank You</p>
+						</div>
+					</label>
+				</div>
+			</div>
+			<footer ng-hide="!loginPassed" class="text-right">
+				<a role="button" ng-click="logout()">logout</a>
+			</footer>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+	<script src="js/angular-cookies.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/buddy.js"></script>
+</body>
+</html>
